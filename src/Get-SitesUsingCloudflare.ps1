@@ -56,6 +56,7 @@ function Get-SitesUsingCloudflare {
     up to date by running "git submodule update".
 #>
     [CmdletBinding()]
+    [OutputType([List[PSObject]])]
 
     param(
         [Parameter(Mandatory,
@@ -65,7 +66,7 @@ function Get-SitesUsingCloudflare {
     )
 
     begin {
-        $results = [List[String]]::new()
+        $results = [List[PSObject]]::new()
         $file = "$PSScriptRoot\..\lib\sites-using-cloudflare\sorted_unique_cf.txt"
 
         Write-Verbose -Message 'Checking that source file is present...'
@@ -83,7 +84,10 @@ function Get-SitesUsingCloudflare {
             if ($Name -contains $site) {
 
                 Write-Verbose -Message "Match detected! $site is using Cloudflare."
-                [void] $results.Add($site)
+                $siteObject = [PSCustomObject]@{
+                    Name = $site
+                }
+                [void] $results.Add($siteObject)
             } #if
         } #foreach
 
