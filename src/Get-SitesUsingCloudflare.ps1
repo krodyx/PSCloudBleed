@@ -25,7 +25,7 @@ function Get-SitesUsingCloudflare {
     Specifies the name of the array to be passed to the cmdlet. This may be
     anything from a text file using Get-Content, to a .csv object created with
     Import-Csv. Note that if your source data is represented as an object,
-    passing in the correct property (i.e. column) is requred using the
+    passing in the correct property (i.e. column) is required using the
     $object.Property syntax. This property name varies between
     password managers.
 .EXAMPLE
@@ -53,7 +53,7 @@ function Get-SitesUsingCloudflare {
     a comprehensive list of domains that utilize Cloudflare.
     
     As this list is further updated, the included version may be brought
-    up to date by running "git submodule update".
+    up to date by running "git submodule update --remote --merge".
 #>
     [CmdletBinding()]
     [OutputType([List[PSObject]])]
